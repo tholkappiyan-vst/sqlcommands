@@ -11,6 +11,25 @@ Aggregate: SUM(), AVG(), COUNT(), MIN(), MAX()
 Value: LAG(), LEAD(), FIRST_VALUE(), LAST_VALUE(), NTH_VALUE()
 
 
+| Window Function | Purpose                                         |
+| --------------- | ----------------------------------------------- |
+| ROW_NUMBER()    | Assigns a unique sequential number to each row. |
+| RANK()          | Assigns a rank to rows, with gaps for ties.     |
+| DENSE_RANK()    | Assigns a rank to rows, without gaps for ties.  |
+| NTILE(n)        | Divides rows into n groups (buckets).           |
+| SUM() OVER()    | Calculates a total or running total.            |
+| AVG() OVER()    | Calculates the average value across rows.       |
+| COUNT() OVER()  | Counts rows without grouping them.              |
+| MIN() OVER()    | Returns the minimum value in the window.        |
+| MAX() OVER()    | Returns the maximum value in the window.        |
+| LAG()           | Returns a value from a previous row.            |
+| LEAD()          | Returns a value from a next row.                |
+| FIRST_VALUE()   | Returns the first value in the window.          |
+| LAST_VALUE()    | Returns the last value in the window.           |
+| NTH_VALUE()     | Returns the nth value in the window.            |
+
+
+
 
 ---> simple examples 
 
@@ -25,6 +44,8 @@ select *, dense_rank() over(partition by age order by first_name asc)as rank0fag
 select *, row_Number() over( order by first_name asc)as rownumber from customers
 
 select *, row_Number() over(partition by age order by first_name asc)as rownumber from customers
+
+
 
 
 
