@@ -9,3 +9,22 @@ Common window functions include:
 Ranking: ROW_NUMBER(), RANK(), DENSE_RANK(), NTILE()
 Aggregate: SUM(), AVG(), COUNT(), MIN(), MAX()
 Value: LAG(), LEAD(), FIRST_VALUE(), LAST_VALUE(), NTH_VALUE()
+
+
+
+---> simple examples 
+
+select *, count(*) over(partition by age ) as count from customers;  // count the rows with same age for every same age groups
+
+select *, count(*) over(partition by age order by first_name ) as count from customers; // in which order it execute
+
+select *, rank() over(partition by age order by first_name asc)as rank0fage from customers //assigning rank for same partition in order of order by
+
+select *, dense_rank() over(partition by age order by first_name asc)as rank0fage from customers  // no gaps
+
+select *, row_Number() over( order by first_name asc)as rownumber from customers
+
+select *, row_Number() over(partition by age order by first_name asc)as rownumber from customers
+
+
+
