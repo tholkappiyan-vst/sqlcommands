@@ -1,0 +1,11 @@
+Window functions perform calculations across a set of rows related to the current row without reducing the number of rows returned.
+They are used with the OVER() clause, which defines the window (partition and order) for the calculation.
+Window functions can be used in the SELECT and ORDER BY clauses (they generally cannot be used directly in WHERE, GROUP BY, or HAVING because those clauses are evaluated before window functions).
+The PARTITION BY clause divides rows into groups, and the window function is applied separately to each group.
+The ORDER BY clause inside OVER() determines the order in which the window function processes rows.
+If PARTITION BY is omitted, the window function operates over the entire result set.
+Unlike GROUP BY, window functions do not collapse rows; each row is returned along with the calculated value.
+Common window functions include:
+Ranking: ROW_NUMBER(), RANK(), DENSE_RANK(), NTILE()
+Aggregate: SUM(), AVG(), COUNT(), MIN(), MAX()
+Value: LAG(), LEAD(), FIRST_VALUE(), LAST_VALUE(), NTH_VALUE()
