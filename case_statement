@@ -1,0 +1,66 @@
+Key Points
+CASE can be used in SELECT, WHERE, ORDER BY, GROUP BY, HAVING, and UPDATE statements.
+ELSE is optional. If omitted and no condition matches, SQL returns NULL.
+The CASE statement stops evaluating as soon as the first matching WHEN condition is found.
+
+
+
+----> convert column into row 
+
+select case when age=31 then first_name end as age_31,
+case when age=22 then first_name end as age_22,
+case when age=25 then first_name end as age_25,
+case when age=28 then first_name end as age_28
+from customers;
+
+----> custom sorting 
+
+select * from customers order by case when age=25 then 1
+										           when age=22 then 2
+ 									            	else 3 end ;
+
+-----> updating value in parallely instead of using where for multiple condition  (using where class for multiple condition on same column in different statement it may lead to inconsistant value)
+
+select *, case when age>30 then 31 
+when age<30 then 20 end as updatedage from customers
+
+
+-----> counting parallely with different confdition
+
+select sum( case when age<=25 then 1 else 0 end) as below_25,
+       sum( case when age>25 then 1 else 0 end) as above_25
+		from customers;
+
+----->  case statemnt in where clause for checking condition in different format 
+
+select * from customers where age> (case when country ="USA" then 30
+when country ="UK" then 20 end);
+
+-----> case statement in group by 
+
+select count(*) as count from customers
+ group by  
+case when age>30 
+then "High" when age>25 
+then "medium"  
+else "low" end; 
+
+----> case statemnet in having clause
+
+select count(*) as count from customers
+ group by  
+case when age>30 
+then "High" when age>25 
+then "medium"  
+else "low" end
+having 
+count>case when age>25 then 2 else 0 end;
+
+
+----> case statement is used in update statemnet
+
+update customers set age =case when age<31 then 32 else 0 end;
+select * from customers;
+
+
+
