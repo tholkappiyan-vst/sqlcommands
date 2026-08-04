@@ -8,3 +8,25 @@ CROSS JOIN returns the Cartesian product, combining every row of the first table
 SELF JOIN joins a table with itself using aliases.
 The ON clause specifies the join condition, while USING can be used when both tables have the same column name.
 Choosing the correct join type depends on whether you need only matching rows, all rows from one table, or all rows from both tables.
+
+Key Points
+The ON clause can use =, >, <, >=, <=, !=, BETWEEN, LIKE, IS NULL, is not null and logical operators like AND and OR.
+The most common join condition is equality (=) between primary and foreign keys.
+Complex join conditions can combine multiple comparisons using AND and OR.
+The condition in the ON clause determines which rows from the tables are considered a match.
+
+joins:
+
+select * from orders o inner join customers c on  c.customer_id=o.customer_id;
+
+select * from orders o left join customers c on  c.customer_id=o.customer_id;
+
+select * from orders o  cross join customers c on c.customer_id>o.customer_id;
+
+select * from orders o  cross join customers c on (c.first_name like "john" and o.item like "mouse" ) or c.customer_id between 4 and 5;
+
+multiple table join :
+
+select * from orders o  inner join customers c on c.customer_id=o.customer_id  and((c.first_name like "john" and o.item like "mouse" )or c.customer_id between 4 and 5)inner join shippings s on  s.customer=o.customer_id;
+
+
