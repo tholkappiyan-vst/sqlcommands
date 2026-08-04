@@ -45,6 +45,19 @@ select *, row_Number() over( order by first_name asc)as rownumber from customers
 
 select *, row_Number() over(partition by age order by first_name asc)as rownumber from customers
 
+select *,ntile(2) over( order by age asc) from customers
+
+select *,sum(age)over(partition by country) from customers
+
+select *,lag(age) over(partition by country) from customers
+  
+select *, first_value(age) over(partition  by country order by age asc) from customers
+
+
+
+
+
+
 
 
 
