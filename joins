@@ -1,0 +1,10 @@
+JOIN is used to combine rows from two or more tables based on a related column.
+The most common join condition uses ON to specify how the tables are related.
+INNER JOIN returns only the rows with matching values in both tables.
+LEFT JOIN returns all rows from the left table and matching rows from the right table. If there is no match, the right table columns contain NULL.
+RIGHT JOIN returns all rows from the right table and matching rows from the left table. If there is no match, the left table columns contain NULL.
+FULL OUTER JOIN returns all rows from both tables. Unmatched rows from either table contain NULL for the missing side.
+CROSS JOIN returns the Cartesian product, combining every row of the first table with every row of the second table.
+SELF JOIN joins a table with itself using aliases.
+The ON clause specifies the join condition, while USING can be used when both tables have the same column name.
+Choosing the correct join type depends on whether you need only matching rows, all rows from one table, or all rows from both tables.
