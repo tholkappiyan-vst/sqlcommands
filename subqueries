@@ -1,0 +1,8 @@
+| Type                     | Returns                          | Common Operators                |
+| ------------------------ | -------------------------------- | ------------------------------- |
+| Single-Row Subquery      | One row                          | `=`, `>`, `<`, `>=`, `<=`, `<>` |
+| Multiple-Row Subquery    | Multiple rows                    | `IN`, `ANY`, `ALL`, `EXISTS`    |
+| Multiple-Column Subquery | Multiple columns                 | `IN`, row comparisons           |
+| Correlated Subquery      | Depends on outer query           | `EXISTS`, comparison operators  |
+| Non-Correlated Subquery  | Independent                      | Any valid operator              |
+| Nested Subquery          | Subquery within another subquery | Any valid operator              |
