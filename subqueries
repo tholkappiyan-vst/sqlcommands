@@ -6,3 +6,31 @@
 | Correlated Subquery      | Depends on outer query           | `EXISTS`, comparison operators  |
 | Non-Correlated Subquery  | Independent                      | Any valid operator              |
 | Nested Subquery          | Subquery within another subquery | Any valid operator              |
+
+
+EXISTS is a SQL operator used to check whether a subquery returns at least one row.
+
+
+select * from customers where age > (select avg(age) from customers);
+
+select * from customers where age > any
+ ( select age from customers where country = "USA");
+
+select * from customers where (age,country) in
+ ( select age ,country from customers where first_name like "john");
+
+select * from customers c where age <
+ (select sum(amount) from orders o where o.customer_id=c.customer_id);  // depends on outer query 
+
+
+SELECT name
+FROM Employees
+WHERE department_id = (
+    SELECT department_id
+    FROM Departments
+    WHERE manager_id = (
+        SELECT employee_id
+        FROM Employees
+        WHERE name = 'John'
+    )
+);
