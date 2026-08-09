@@ -1,0 +1,142 @@
+| Function              | Purpose                     |
+| --------------------- | --------------------------- |
+| `CONCAT()`            | Join strings                |
+| `CONCAT_WS()`         | Join strings with separator |
+| `LENGTH()`            | Find byte length            |
+| `CHAR_LENGTH()`       | Find character length       |
+| `UPPER()` / `UCASE()` | Convert to uppercase        |
+| `LOWER()` / `LCASE()` | Convert to lowercase        |
+| `TRIM()`              | Remove spaces               |
+| `LTRIM()`             | Remove left spaces          |
+| `RTRIM()`             | Remove right spaces         |
+| `SUBSTRING()`         | Extract part of string      |
+| `LEFT()`              | Get characters from left    |
+| `RIGHT()`             | Get characters from right   |
+| `INSTR()`             | Find substring position     |
+| `LOCATE()`            | Find substring position     |
+| `REPLACE()`           | Replace text                |
+| `REVERSE()`           | Reverse string              |
+| `REPEAT()`            | Repeat string               |
+| `LPAD()`              | Pad from left               |
+| `RPAD()`              | Pad from right              |
+| `SUBSTRING_INDEX()`   | Extract based on delimiter  |
+| `ASCII()`             | Get ASCII value             |
+| `STRCMP()`            | Compare strings             |
+| `LIKE`                | Pattern matching            |
+
+
+SELECT concat(name," ",dept)FROM EMPLOYEE ;
+
++-------------------+
+| concat(name,dept) |
++-------------------+
+| ClarkSales        |
+| DaveAccounting    |
+| AvaSales          |
++-------------------+
+
+SELECT concat_ws("-",name,dept,empid)FROM EMPLOYEE ;
+
++--------------------------------+
+| concat_ws("-",name,dept,empid) |
++--------------------------------+
+| Clark-Sales-1                  |
+| Dave-Accounting-2              |
+| Ava-Sales-3                    |
++--------------------------------+
+
+SELECT name,length(name) as length FROM EMPLOYEE ;
+
++-------+--------+
+| name  | length |
++-------+--------+
+| Clark |      5 |
+| Dave  |      4 |
+| Ava   |      3 |
++-------+--------+
+
+SELECT name,char_length(name) as length FROM EMPLOYEE ;
+
++----------+--------+
+| name     | length |
++----------+--------+
+| Clark jo |      8 |
+| Dave     |      4 |
+| Ava      |      3 |
++----------+--------+
+
+SELECT name,lower(name),upper(name)  FROM EMPLOYEE ;
+
++----------+-------------+-------------+
+| name     | lower(name) | upper(name) |
++----------+-------------+-------------+
+| Clark jo | clark jo    | CLARK JO    |
+| Dave     | dave        | DAVE        |
+| Ava      | ava         | AVA         |
++----------+-------------+-------------+
+
+
+SELECT name,trim(name), Ltrim(name) ,Rtrim(name) FROM EMPLOYEE ;
+
++--------------+------------+-------------+-------------+
+| name         | trim(name) | Ltrim(name) | Rtrim(name) |
++--------------+------------+-------------+-------------+
+|   Clark jo   | Clark jo   | Clark jo    |   Clark jo  |
+|   Dave       | Dave       | Dave        |   Dave      |
+|   Ava        | Ava        | Ava         |   Ava       |
++--------------+------------+-------------+-------------+
+
+SELECT name,substring(name,2) , substring(name,2,3),left(name,2) ,right(name,2)FROM EMPLOYEE ;
+
++----------+-------------------+---------------------+--------------+---------------+
+| name     | substring(name,2) | substring(name,2,3) | left(name,2) | right(name,2) |
++----------+-------------------+---------------------+--------------+---------------+
+| Clark jo | lark jo           | lar                 | Cl           | jo            |
+| Dave     | ave               | ave                 | Da           | ve            |
+| Ava      | va                | va                  | Av           | va            |
++----------+-------------------+---------------------+--------------+---------------+
+
+SELECT name,instr(name,"jo")FROM EMPLOYEE ;
+
+Output:
++----------+------------------+
+| name     | instr(name,"jo") |
++----------+------------------+
+| Clark jo |                7 |
+| Dave     |                0 |
+| Ava      |                0 |
++----------+------------------+
+
+
+SELECT name,replace(name,"jo","ho"),reverse(name), repeat(concat(name," "),3)FROM EMPLOYEE ;
+
+Output:
++----------+-------------------------+---------------+-----------------------------+
+| name     | replace(name,"jo","ho") | reverse(name) | repeat(concat(name," "),3)  |
++----------+-------------------------+---------------+-----------------------------+
+| Clark jo | Clark ho                | oj kralC      | Clark jo Clark jo Clark jo  |
+| Dave     | Dave                    | evaD          | Dave Dave Dave              |
+| Ava      | Ava                     | avA           | Ava Ava Ava                 |
++----------+-------------------------+---------------+-----------------------------+
+
+SELECT name,lpad(name,10," "),rpad(name,10," ")FROM EMPLOYEE ;
+
+Output:
++----------+-------------------+-------------------+
+| name     | lpad(name,10," ") | rpad(name,10," ") |
++----------+-------------------+-------------------+
+| Clark jo |   Clark jo        | Clark jo          |
+| Dave     |       Dave        | Dave              |
+| Ava      |        Ava        | Ava               |
++----------+-------------------+-------------------+
+
+
+
+
+
+
+
+
+
+
+
